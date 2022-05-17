@@ -1,0 +1,24 @@
+# 数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop_stock?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  application:
+    name: stock-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+server:
+  port: 8050
+# dubbo相关配置
+dubbo:
+  scan:
+    # dubbo服务实现类的扫描基准包路径
+    base-packages: cn.fighter3.serv.service.impl
+    #Dubbo服务暴露的协议配置
+  protocol:
+    name: dubbo
+    port: 1
