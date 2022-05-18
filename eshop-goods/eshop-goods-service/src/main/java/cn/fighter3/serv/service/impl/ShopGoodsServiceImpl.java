@@ -5,6 +5,7 @@ import cn.fighter3.api.model.StockUpdateDTO;
 import cn.fighter3.api.rpc.StockApiService;
 import cn.fighter3.serv.api.result.CommonResult;
 import cn.fighter3.serv.entity.ShopGoods;
+import cn.fighter3.serv.enums.SexEnum;
 import cn.fighter3.serv.mapper.ShopGoodsMapper;
 import cn.fighter3.serv.model.dto.GoodsAddDTO;
 import cn.fighter3.serv.model.vo.GoodsVO;
@@ -32,6 +33,7 @@ public class ShopGoodsServiceImpl extends ServiceImpl<ShopGoodsMapper, ShopGoods
     @org.apache.dubbo.config.annotation.Reference(mock = "cn.fighter3.serv.service.impl.MockStockApiServiceImpl",
             cluster = "failfast")
     StockApiService stockApiService;
+
 
     /**
      * 添加商品

@@ -4,8 +4,6 @@ import cn.fighter3.serv.entity.ShopStock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
-
 /**
  * <p>
  *  Mapper 接口

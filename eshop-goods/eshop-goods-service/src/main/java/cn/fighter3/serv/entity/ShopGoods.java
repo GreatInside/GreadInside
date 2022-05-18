@@ -1,8 +1,11 @@
 package cn.fighter3.serv.entity;
 
 import java.math.BigDecimal;
+
+import cn.fighter3.serv.enums.SexEnum;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -14,7 +17,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 三分恶
@@ -22,7 +25,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="ShopGoods对象", description="")
+@ApiModel(value = "ShopGoods对象", description = "")
 public class ShopGoods implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +55,11 @@ public class ShopGoods implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
 
-    @TableLogic
+    @TableLogic//逻辑删除注解
+    @ApiModelProperty(value = "逻辑删除")
     private Integer status;
 
+    @ApiModelProperty(value = "性别枚举测试")
+    private SexEnum sex;
 
 }

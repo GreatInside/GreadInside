@@ -45,10 +45,10 @@ public class MySQLCodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //设置项目位置，这里直接设置为绝对路径
-        String projectPath = "D:\\WorkSpace\\IdeaProjects\\eshop-project\\eshop-stock";
+        String projectPath = "D:\\JavaCloud\\eshop-project";
         //输出目录
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("三分恶");
+        gc.setAuthor("cxy");
         gc.setOpen(false);
         gc.setSwagger2(true);     //实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
@@ -58,7 +58,7 @@ public class MySQLCodeGenerator {
         dsc.setUrl("jdbc:mysql://localhost:3306/shop_stock?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
         //包配置
