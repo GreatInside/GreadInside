@@ -9,10 +9,13 @@ import cn.fighter3.serv.mapper.ShopGoodsMapper;
 import cn.fighter3.serv.model.dto.GoodsAddDTO;
 import cn.fighter3.serv.model.vo.GoodsVO;
 import cn.fighter3.serv.service.IShopGoodsService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -59,6 +62,9 @@ public class ShopGoodsServiceImpl extends ServiceImpl<ShopGoodsMapper, ShopGoods
         GoodsVO goodsVO = new GoodsVO();
         //获取商品基本信息
         ShopGoods shopGoods = this.baseMapper.selectById(goodsId);
+        if(shopGoods == null){
+            return CommonResult.error("商品不存在");
+        }
         BeanUtils.copyProperties(shopGoods, goodsVO);
         //获取商品库存数量
         Integer account = this.stockApiService.getAccountById(goodsId);
@@ -92,6 +98,14 @@ public class ShopGoodsServiceImpl extends ServiceImpl<ShopGoodsMapper, ShopGoods
     public CommonResult updateById(StockUpdateDTO stockUpdateDTO) {
         this.stockApiService.updateById(stockUpdateDTO);
         return CommonResult.ok();
+    }
+
+    @Override
+    public CommonResult<List<ShopGoods>> get() {
+        Page<ShopGoods> stockPage = new Page<>(1, 3);
+        Page<ShopGoods> page = this.baseMapper.selectPage(stockPage, null);
+        List<ShopGoods> records = page.getRecords();
+        return CommonResult.ok(records);
     }
 
 }

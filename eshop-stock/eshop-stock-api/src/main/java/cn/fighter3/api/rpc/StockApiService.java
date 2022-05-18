@@ -42,4 +42,5 @@ public interface StockApiService {
      * @return
      */
     Integer updateById(StockUpdateDTO stockUpdateDTO);
+
 }

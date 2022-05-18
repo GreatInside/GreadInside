@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author: 三分恶

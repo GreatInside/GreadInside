@@ -65,6 +65,13 @@
             <groupId>com.alibaba.nacos</groupId>
             <artifactId>nacos-client</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
+
         <!--Dubbo-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

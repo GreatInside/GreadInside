@@ -3,6 +3,7 @@ package cn.fighter3.serv.controller;
 import cn.fighter3.api.model.StockAddDTO;
 import cn.fighter3.api.model.StockUpdateDTO;
 import cn.fighter3.serv.api.result.CommonResult;
+import cn.fighter3.serv.entity.ShopGoods;
 import cn.fighter3.serv.model.dto.GoodsAddDTO;
 import cn.fighter3.serv.model.vo.GoodsVO;
 import cn.fighter3.serv.service.IShopGoodsService;
@@ -11,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -51,6 +54,12 @@ public class ShopGoodsController {
     @ApiOperation(value = "根据ID修改库存")
     public CommonResult updateById(@RequestBody StockUpdateDTO stockUpdateDTO){
         return this.goodsService.updateById(stockUpdateDTO);
+    }
+
+    @GetMapping("get")
+    @ApiOperation(value = "分页查询")
+    public CommonResult<List<ShopGoods>> get(){
+        return this.goodsService.get();
     }
 
 }

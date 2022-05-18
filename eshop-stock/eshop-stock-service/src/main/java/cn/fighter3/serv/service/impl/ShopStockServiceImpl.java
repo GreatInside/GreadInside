@@ -6,9 +6,12 @@ import cn.fighter3.serv.mapper.ShopStockMapper;
 import cn.fighter3.serv.api.result.CommonResult;
 
 import cn.fighter3.serv.service.IShopStockService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -36,5 +39,18 @@ public class ShopStockServiceImpl extends ServiceImpl<ShopStockMapper, ShopStock
         Integer stockId = this.baseMapper.insert(stock);
         log.info("add stock successfully,stockId:{}", stockId);
         return CommonResult.ok(stockId);
+    }
+
+    /**
+     * 分页获取所以库存量
+     *
+     * @return
+     */
+    @Override
+    public List<ShopStock> getPage() {
+        Page<ShopStock> stockPage = new Page<>(1, 3);
+        Page<ShopStock> stockPage1 = this.baseMapper.selectPage(stockPage, null);
+        List<ShopStock> records = stockPage1.getRecords();
+        return records;
     }
 }

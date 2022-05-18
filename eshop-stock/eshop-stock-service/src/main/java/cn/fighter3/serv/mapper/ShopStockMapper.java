@@ -2,7 +2,9 @@ package cn.fighter3.serv.mapper;
 
 import cn.fighter3.serv.entity.ShopStock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -12,7 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
  * @author 三分恶
  * @since 2021-05-18
  */
-@Mapper
+
+@Repository
 public interface ShopStockMapper extends BaseMapper<ShopStock> {
 
 }

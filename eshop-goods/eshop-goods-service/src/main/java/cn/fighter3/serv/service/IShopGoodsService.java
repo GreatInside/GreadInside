@@ -8,6 +8,8 @@ import cn.fighter3.serv.model.dto.GoodsAddDTO;
 import cn.fighter3.serv.model.vo.GoodsVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -25,4 +27,6 @@ public interface IShopGoodsService extends IService<ShopGoods> {
     CommonResult deleteById(Integer goodsId);
 
     CommonResult updateById(StockUpdateDTO stockUpdateDTO);
+
+    CommonResult<List<ShopGoods>> get();
 }

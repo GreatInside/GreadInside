@@ -4,8 +4,10 @@ import cn.fighter3.api.model.StockUpdateDTO;
 import cn.fighter3.api.rpc.StockApiService;
 import cn.fighter3.api.model.StockAddDTO;
 import cn.fighter3.serv.mapper.ShopStockMapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +54,13 @@ public class StockApiServiceImpl implements StockApiService {
      */
     @Override
     public Integer getAccountById(Integer goodsId) {
-        QueryWrapper<ShopStock> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("goods_id",goodsId);
+        //QueryWrapper<ShopStock> queryWrapper = new QueryWrapper();
+        //queryWrapper.select("inventory").eq("goods_id", goodsId);
         //ShopStock stock = this.stockMapper.selectOne(Wrappers.<ShopStock>lambdaQuery().eq(ShopStock::getGoodsId, goodsId));
-        ShopStock stock = this.stockMapper.selectOne(queryWrapper);
-        Integer account = stock.getInventory();
-        return account;
+
+        LambdaQueryWrapper<ShopStock> eq = Wrappers.<ShopStock>lambdaQuery().eq(ShopStock::getGoodsId, goodsId);
+        ShopStock stock = this.stockMapper.selectOne(eq);
+        return stock.getInventory();
     }
 
     /**
@@ -82,11 +85,9 @@ public class StockApiServiceImpl implements StockApiService {
     @Override
     public Integer updateById(StockUpdateDTO stockUpdateDTO) {
         ShopStock shopStock = new ShopStock();
-        BeanUtils.copyProperties(stockUpdateDTO,shopStock);
+        BeanUtils.copyProperties(stockUpdateDTO, shopStock);
         log.info("准备修改库存,参数:{}", shopStock.toString());
-        QueryWrapper<ShopStock> update = new QueryWrapper<>();
-        update.eq("goods_id",shopStock.getGoodsId());
-        return stockMapper.update(shopStock,update);
-        //return stockMapper.updateById(shopStock);
+        LambdaQueryWrapper<ShopStock> eq = Wrappers.<ShopStock>lambdaQuery().eq(ShopStock::getGoodsId, shopStock.getGoodsId());
+        return stockMapper.update(shopStock, eq);
     }
 }
